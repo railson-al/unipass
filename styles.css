@@ -57,6 +57,18 @@ th {
     background-color: #f2f2f2;
 }
 
+a {
+  display: flex;
+  cursor: pointer;
+  border: 0;
+  text-decoration: none;
+  border-radius: 99px;
+  background-color: transparent;
+}
+a:hover {
+  background-color: rgb(230, 230, 230);
+}
+
 .wrapperActions {
   display: flex;
   flex-direction: row;
