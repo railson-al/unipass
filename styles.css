@@ -2,24 +2,22 @@
 
 * {
   margin: 0;
-  padding: 0
+  padding: 0;
 }
 
 body {
   display: flex;
+  flex: 1;
   flex-direction: column;
   background-color: #E1E1E1;
-  align-items: center;
 }
 
 .header {
   display: flex;
-  flex: 1;
-  width: 100%;
-  align-items: center;
   justify-content: center;
   gap: 1rem;
-  background-color: #32B8F1;
+  align-items: center;
+  background-color: #2188b4;
   color: #FFFFFF;
   padding: 1rem;
   font-family: 'Inter';
@@ -27,37 +25,42 @@ body {
 
 main {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin: 3rem 0 3rem 0;
+  gap: 3rem;
+  justify-content: center;
+}
+
+.main-table {
+  display: flex;
+  align-self: center;
   align-items: center;
-  margin-left: 4rem;
-  margin-right: 4rem;
-  margin-top: 4rem;
+  flex-direction: column;
   background-color: white;
   border-radius: 16px;
-  height: 45rem;
-  width: 40%;
-  min-width: 50vh;
-  overflow: hidden;
+  height: 40rem;
+  min-width: 54rem;
+  overflow: auto; /* Alteração feita aqui */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 table {
-    display: flexbox;
-    flex-direction: column;
+    width: 100%;
     font-family: "Inter";
     border-collapse: collapse;
-    width: 100%;
 }
 
 th, td {
     text-align: center;
     padding: 8px;
+    border: 1px solid #ddd;
 }
+
 th {
     background-color: #f2f2f2;
 }
 
-a {
+a, button {
   display: flex;
   cursor: pointer;
   border: 0;
@@ -67,6 +70,29 @@ a {
 }
 a:hover {
   background-color: rgb(230, 230, 230);
+}
+
+.plus_img {
+  width: 2rem;
+  height: 2rem;
+  color: white;
+}
+
+.add_button {
+  display: flex;
+  background-color: #2188b4;
+  padding: 1rem;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+  font-family: "Inter";
+  gap: 0.5rem;
+}
+
+.add_button:hover {
+  background-color: #196a8d;
 }
 
 .wrapperActions {
@@ -83,4 +109,22 @@ a:hover {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+@media (max-width: 900px) {
+  main {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .main-table {
+    min-width: auto;
+    width: 90%;
+    height: auto;
+    min-height: 20rem;
+  }
+
+  table {
+    width: 100%;
+  }
 }

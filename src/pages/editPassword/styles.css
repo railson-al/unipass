@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background-color: #E1E1E1;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  align-items: center;
+  background-color: #2188b4;
+  color: #FFFFFF;
+  padding: 1rem;
+  font-family: 'Inter';
+}
+
+main {
+  display: flex;
+  flex: 1;
+  align-self: center;
+  padding: 2rem;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 16px;
+  height: 40rem;
+  gap: 1rem;
+  margin: 3rem;
+  min-width: 35rem;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  position: relative;
+}
+
+form {
+  display: flex;
+  gap: 2rem;
+  flex-direction: column;
+}
+
+label, h2 {
+  font-weight: bold;
+  font-family: 'Inter';
+}
+
+input[type="text"], input[type="password"] {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  display: flex;
+  border: 0px;
+  border-radius: 12px;
+  background-color: #E1E1E1;
+  height: 2.5rem;
+  font-family: "Inter";
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+  outline: none;
+}
+
+input[type="submit"] {
+  display: flex;
+  background-color: #2188b4;
+  padding: 1rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 99px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-family: "Inter";
+}
+
+input[type="submit"]:hover {
+  background-color: #196a8d;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 10px;
+  top: 40px;
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+@media (max-width: 900px) {
+  main {
+    min-width: auto;
+    width: 90%;
+    height: auto;
+    min-height: 20rem;
+  }
+}
