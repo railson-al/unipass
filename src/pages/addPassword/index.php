@@ -28,12 +28,17 @@
       <div class='inputWrapper'>
         <label for="newPassword">Senha</label>
         <input type="password" name="newPassword" id="newPassword" autocomplete="off">
+        <button type="button" onclick="generateStrongPassword()" class="button generate-button">Gerar Senha Forte</button>
       </div>
       <input type="submit" value="Adicionar Senha">
     </form>
+    <button onclick="window.location.href = '../../../index.php';" class="button cancel-button">Cancelar</button>
     
     <?php 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+      require '../../../security.php';
+
       $newDescription = $_POST['newDescription'];
       $newCategory = $_POST['newCategory'];
       $newPassword = $_POST['newPassword'];
@@ -49,7 +54,10 @@
         die("Connection failed: ". $connection->connect_error);
       }
 
-      $insertSQL = "INSERT INTO passwords (description, category, password) VALUES ('$newDescription', '$newCategory', '$newPassword')";
+      #Criptografia SSL da senha
+      $hash_password = encryptPassword($newPassword);
+
+      $insertSQL = "INSERT INTO passwords (description, category, password) VALUES ('$newDescription', '$newCategory', '$hash_password')";
 
       $result = $connection->query($insertSQL);
 
@@ -62,6 +70,18 @@
     }
     ?>
   </main>
+
+  <script>
+        function generateStrongPassword() {
+            var length = 16; // comprimento da senha
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            var password = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                password += charset.charAt(Math.floor(Math.random() * n));
+            }
+            document.getElementById('newPassword').value = password;
+        }
+    </script>
 </body>
 
 </html>

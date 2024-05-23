@@ -17,6 +17,9 @@
   <main>
     <?php 
     if(isset($_GET['id'])) {
+
+        require '../../../security.php';
+
         // Recupera o ID da URL
         $id = $_GET['id'];
         
@@ -40,7 +43,8 @@
             $newPassword = $_POST['newPassword'];
 
             // Atualiza os dados no banco de dados
-            $updateQuery = "UPDATE passwords SET description='$newDescription', category='$newCategory', password='$newPassword' WHERE id=$id";
+            $hash_password = encryptPassword($newPassword);
+            $updateQuery = "UPDATE passwords SET description='$newDescription', category='$newCategory', password='$hash_password' WHERE id=$id";
             if ($connection->query($updateQuery) === TRUE) {
                 // Redireciona para a página inicial
                 header('Location: ../../../index.php?message=Senha%20atualizada%20com%20sucesso!');
@@ -57,6 +61,8 @@
         if ($result->num_rows > 0) {
             // Loop pelos resultados
             while ($row = $result->fetch_assoc()) {
+
+                $decrypted_pass = decryptPassword($row['password'])
                 // Preenche os campos do formulário com os detalhes da senha
                 ?>
                 <header><h2>Editar senha</h2></header>
@@ -71,10 +77,12 @@
                     </div>
                     <div class='inputWrapper'>
                         <label for='newPassword'>Senha</label>
-                        <input type='password' name='newPassword' id='newPassword' autocomplete='off' value="<?php echo $row['password']; ?>">
+                        <input type='password' name='newPassword' id='newPassword' autocomplete='off' value="<?php echo $decrypted_pass; ?>">
+                        <button type="button" onclick="generateStrongPassword()" class="button generate-button">Gerar Senha Forte</button>
                     </div>
                     <input type='submit' value='Salvar Alterações'>
                 </form>
+                <button onclick="window.location.href = '../../../index.php';" class="button cancel-button">Cancelar</button>
                 <?php
             }
         } else {
@@ -89,6 +97,18 @@
     ?>
 
   </main>
+
+  <script>
+        function generateStrongPassword() {
+            var length = 16; // comprimento da senha
+            var charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+            var password = "";
+            for (var i = 0, n = charset.length; i < length; ++i) {
+                password += charset.charAt(Math.floor(Math.random() * n));
+            }
+            document.getElementById('newPassword').value = password;
+        }
+    </script>
 </body>
 
 </html>

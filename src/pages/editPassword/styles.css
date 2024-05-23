@@ -88,6 +88,8 @@ input[type="submit"] {
   font-family: "Inter";
 }
 
+
+
 input[type="submit"]:hover {
   background-color: #196a8d;
 }
@@ -99,6 +101,32 @@ input[type="submit"]:hover {
   cursor: pointer;
   width: 24px;
   height: 24px;
+}
+
+.button{
+  display: flex;
+  background-color: #6f7d84;
+  padding: 1rem;
+  cursor: pointer;
+  border: 0;
+  border-radius: 99px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  color: rgb(23, 23, 23);
+  font-weight: bold;
+  text-decoration: none;
+  font-family: "Inter";
+}
+
+.cancel-button {
+  background-color: #6f7d84;
+  color: rgb(23, 23, 23);
+}
+
+.generate-button {
+  background-color: #95e347;
+  color: rgb(255, 255, 255);
 }
 
 @media (max-width: 900px) {

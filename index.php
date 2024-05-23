@@ -5,6 +5,7 @@ function limitText($text, $limit) {
     }
     return $text;
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +44,8 @@ function limitText($text, $limit) {
         </thead>
         <tbody>
           <?php
+            require './security.php';
+
             if (isset($_GET['message'])) {
               echo "<script>alert('" . htmlspecialchars($_GET['message']) . "');</script>";
 
@@ -79,13 +82,14 @@ function limitText($text, $limit) {
               // Escapar a senha para uso em JavaScript
               $password = htmlspecialchars($row['password'], ENT_QUOTES, 'UTF-8');
               // Usar addslashes para escapar a senha corretamente em JavaScript
-              $passwordForJs = addslashes($row['password']);
+              $decrypted_pass = decryptPassword($password);
+              $passwordForJs = addslashes($decrypted_pass);
               
               // Limitar os textos a 20 caracteres
               $description = limitText($row['description'], 20);
               $category = limitText($row['category'], 20);
               $passwordLimited = str_repeat('*', min(strlen($password), 20));
-
+              
               echo "
               <tr>
                 <td>{$row['id']}</td>
