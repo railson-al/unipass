@@ -86,7 +86,7 @@ function limitText($text, $limit) {
               $passwordForJs = addslashes($decrypted_pass);
               
               // Limitar os textos a 20 caracteres
-              $description = limitText($row['description'], 20);
+              $description = limitText($row['description'], 30);
               $category = limitText($row['category'], 20);
               $passwordLimited = str_repeat('*', min(strlen($password), 20));
               
