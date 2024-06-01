@@ -27,9 +27,10 @@
       </div>
       <div class='inputWrapper'>
         <label for="newPassword">Senha</label>
-        <input type="password" name="newPassword" id="newPassword" autocomplete="off">
+        <input type="password" name="newPassword" id="newPassword" autocomplete="off" oninput="validatePasswordStrength()">
         <button type="button" onclick="generateStrongPassword()" class="button generate-button">Gerar Senha Forte</button>
       </div>
+      <p id="passwordStrengthMessage"></p>
       <input type="submit" value="Adicionar Senha">
     </form>
     <button onclick="window.location.href = '../../../index.php';" class="button cancel-button">Cancelar</button>
@@ -80,7 +81,41 @@
                 password += charset.charAt(Math.floor(Math.random() * n));
             }
             document.getElementById('newPassword').value = password;
+            validatePasswordStrength();
         }
+
+        function checkStrongPassword(password) {
+          // Expressões regulares para verificar se a senha atende aos critérios
+          var uppercaseRegex = /[A-Z]/;
+          var lowercaseRegex = /[a-z]/;
+          var numberRegex = /[0-9]/;
+          var specialCharRegex = /[@#$%^&*()_+~`|}{[\]:;?><,.\/-=]/;
+
+          // Verifica se a senha contém pelo menos uma letra maiúscula, uma minúscula, um número e um caractere especial
+          var isUppercasePresent = uppercaseRegex.test(password);
+          var isLowercasePresent = lowercaseRegex.test(password);
+          var isNumberPresent = numberRegex.test(password);
+          var isSpecialCharPresent = specialCharRegex.test(password);
+
+          // Retorna verdadeiro se todos os critérios forem atendidos, indicando que a senha é forte
+          return isUppercasePresent && isLowercasePresent && isNumberPresent && isSpecialCharPresent;
+        }
+
+        function validatePasswordStrength() {
+            var password = document.getElementById('newPassword').value;
+            var isStrong = checkStrongPassword(password);
+
+            // Exibe uma mensagem informando se a senha é forte ou não
+            var message = document.getElementById('passwordStrengthMessage');
+            if (isStrong) {
+                message.innerText = "Senha forte!";
+                message.style.color = "green";
+            } else {
+                message.innerText = "Senha fraca. inclua letras maiúsculas, minúsculas, números e caracteres especiais.";
+                message.style.color = "red";
+            }
+        }
+
     </script>
 </body>
 

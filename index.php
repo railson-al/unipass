@@ -62,7 +62,7 @@ function limitText($text, $limit) {
 
             $servername = "localhost";
             $username = "root";
-            $password = "";
+            $password = getenv("DATABASE_PASSWORDS");
             $database = "unipass";
 
             $connection = new mysqli($servername, $username, $password, $database);
