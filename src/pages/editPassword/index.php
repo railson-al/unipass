@@ -69,15 +69,15 @@
                 <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']) . '?id=' . $id; ?>">
                     <div class='inputWrapper'>
                         <label for='newDescription'>Descrição</label>
-                        <input type='text' name='newDescription' id='newDescription' value="<?php echo $row['description']; ?>">
+                        <input required type='text' name='newDescription' id='newDescription' value="<?php echo $row['description']; ?>">
                     </div>
                     <div class='inputWrapper'>
                         <label for='newCategory'>Categoria</label>
-                        <input type='text' name='newCategory' id='newCategory' value="<?php echo $row['category']; ?>">
+                        <input required type='text' name='newCategory' id='newCategory' value="<?php echo $row['category']; ?>">
                     </div>
                     <div class='inputWrapper'>
                         <label for='newPassword'>Senha</label>
-                        <input type='password' name='newPassword' id='newPassword' autocomplete='off' oninput="validatePasswordStrength()" value="<?php echo $decrypted_pass; ?>">
+                        <input required type='password' name='newPassword' id='newPassword' autocomplete='off' oninput="validatePasswordStrength()" value="<?php echo $decrypted_pass; ?>">
                         <button type="button" onclick="generateStrongPassword()" class="button generate-button">Gerar Senha Forte</button>
                     </div>
                     <p id="passwordStrengthMessage"></p>

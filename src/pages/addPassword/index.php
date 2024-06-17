@@ -19,15 +19,15 @@
     <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
       <div class='inputWrapper'>
         <label for="newDescription">Descrição</label>
-        <input type="text" name="newDescription" id="newDescription">
+        <input required type="text" name="newDescription" id="newDescription">
       </div>
       <div class='inputWrapper'>
         <label for="newCategory">Categoria</label>
-        <input type="text" name="newCategory" id="newCategory">
+        <input required type="text" name="newCategory" id="newCategory">
       </div>
       <div class='inputWrapper'>
         <label for="newPassword">Senha</label>
-        <input type="password" name="newPassword" id="newPassword" autocomplete="off" oninput="validatePasswordStrength()">
+        <input required type="password" name="newPassword" id="newPassword" autocomplete="off" oninput="validatePasswordStrength()">
         <button type="button" onclick="generateStrongPassword()" class="button generate-button">Gerar Senha Forte</button>
       </div>
       <p id="passwordStrengthMessage"></p>
